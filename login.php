@@ -28,6 +28,7 @@
 				"result" => [
 					"id"=>(int)$row['id'],
 					"username"=>$row['namaUsername'],
+					"alamat"=>$row['alamat'],
 				],
 				"status" => [
 					"code"=> $code,
