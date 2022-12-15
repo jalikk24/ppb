@@ -6,13 +6,13 @@
 		$request = file_get_contents('php://input');
         $data_retrevie = json_decode($request);
 
-        $message = "Input Berhasil";
+        $message = "Login Berhasil";
         $code = 200;
         $status = true;
 
         $data_collect = json_decode($request);
 	
-		$username = $data_collect->namaUsername;
+		$username = $data_collect->username;
 		$passwords = $data_collect->passwords;
 
 		$sql = "SELECT * FROM user WHERE namaUsername='$username' AND passwords='$passwords'";
@@ -26,7 +26,7 @@
 		if (!empty($row)){
 			$result = [
 				"result" => [
-					"id"=>$row['id'],
+					"id"=>(int)$row['id'],
 					"username"=>$row['namaUsername'],
 				],
 				"status" => [
@@ -50,9 +50,7 @@
 		$json = json_encode($result);
 
 		echo $json;
-		//Closing the database 
+
 		mysqli_close($con);
 
 }
-
-?>

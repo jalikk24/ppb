@@ -12,7 +12,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $data_collect = json_decode($request);
 
-    //Getting values
     $namaUsername = $data_collect->namaUsername;
     $umur = $data_collect->umur;
     $email = $data_collect->email;
@@ -26,14 +25,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $longitude = $data_collect->longitude;
     $alamat = $data_collect->alamat;
 
-    //Creating an sql query
     $sql = "INSERT INTO user (namaUsername, umur, email, passwords, gender, idProv, idKotaKabs, idKecamatan, idKelurahan, latitude, longitude, alamat) VALUES 
         ('$namaUsername', '$umur', '$email', '$passwords', '$gender', '$idProv', '$idKotaKabs', '$idKecamatan', '$idKelurahan', '$latitude', '$longitude', '$alamat')";
 
-    //Importing our db connection script
     require_once('dbConnect.php');
 
-    //Executing query to database
     if (!mysqli_query($con, $sql)) {
         $data_collect = null;
         $message = "Request Data salah";
